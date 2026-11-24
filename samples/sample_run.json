@@ -1,0 +1,293 @@
+﻿{
+  "meta": {
+    "sample_id": "ca-final-idt-dt-sample-2026-11-23",
+    "description": "Deterministic sample run artifact for assignment evaluation. Contains retrieval context, generated MCQ drafts, deterministic validation, and LLM-as-a-Judge scores.",
+    "generator_model": "gemini-2.5-flash",
+    "evaluator_model_preference": [
+      "gemini-2.5-flash",
+      "gemini-2.5-flash-lite"
+    ],
+    "generated_at_utc": "2026-11-23T16:15:00Z"
+  },
+  "runs": [
+    {
+      "run_id": "idt-single-medium-001",
+      "input_parameters": {
+        "subject": "Indirect Tax Laws (IDT)",
+        "chapter": "Supply under GST",
+        "topic": "Composite and Mixed Supply",
+        "difficulty": "Medium",
+        "question_type": "Single Correct",
+        "num_questions": 2,
+        "mock_mode": false,
+        "top_k_retrieval": 4
+      },
+      "retrieved_context": [
+        {
+          "chunk_id": "idt_supply_021",
+          "document_title": "ICAI Study Material - Final Paper 5 (IDT)",
+          "source_url": "https://www.icai.org/post/sm-final-paper5",
+          "page_number": 43,
+          "chapter": "Supply under GST",
+          "section_or_topic": "Composite and Mixed Supply",
+          "text_excerpt": "Composite supply means a supply consisting of two or more taxable supplies of goods or services which are naturally bundled and supplied in conjunction with each other in the ordinary course of business. The tax liability shall be determined as if the supply were that of the principal supply."
+        },
+        {
+          "chunk_id": "idt_supply_022",
+          "document_title": "ICAI Study Material - Final Paper 5 (IDT)",
+          "source_url": "https://www.icai.org/post/sm-final-paper5",
+          "page_number": 44,
+          "chapter": "Supply under GST",
+          "section_or_topic": "Composite and Mixed Supply",
+          "text_excerpt": "Mixed supply means two or more individual supplies made together for a single price where such supply does not constitute a composite supply. Tax liability for mixed supply is treated as supply attracting highest rate of tax."
+        }
+      ],
+      "generated_mcqs": [
+        {
+          "id": "mcq_idt_sc_001",
+          "subject": "Indirect Tax Laws (IDT)",
+          "chapter": "Supply under GST",
+          "topic": "Composite and Mixed Supply",
+          "difficulty": "Medium",
+          "question_type": "Single Correct",
+          "question_statement": "A supplier offers air-conditioner installation bundled with mandatory stabilizer and standard installation for a single price. Which GST characterization is most accurate based on naturally bundled principles?",
+          "options": [
+            {
+              "label": "A",
+              "text": "Composite supply taxable at the rate applicable to principal supply."
+            },
+            {
+              "label": "B",
+              "text": "Mixed supply taxable at the highest rate among all supplied items."
+            },
+            {
+              "label": "C",
+              "text": "Exempt supply because installation is ancillary to goods."
+            },
+            {
+              "label": "D",
+              "text": "Two independent supplies to be taxed separately even if naturally bundled."
+            }
+          ],
+          "correct_answers": [
+            "A"
+          ],
+          "correct_explanation": "Where supplies are naturally bundled in ordinary course and one is principal, classification is composite supply and tax follows principal supply.",
+          "distractor_explanations": {
+            "B": "Highest-rate rule applies to mixed supply, not naturally bundled composite supply.",
+            "C": "No exemption follows merely because one element is ancillary.",
+            "D": "Naturally bundled supplies are not split for separate taxation in this context."
+          },
+          "source_reference": {
+            "document_title": "ICAI Study Material - Final Paper 5 (IDT)",
+            "source_url": "https://www.icai.org/post/sm-final-paper5",
+            "page_number": 43,
+            "section_or_topic": "Composite and Mixed Supply",
+            "excerpt": "Composite supply ... naturally bundled ... tax liability as principal supply."
+          },
+          "status": "Draft"
+        },
+        {
+          "id": "mcq_idt_sc_002",
+          "subject": "Indirect Tax Laws (IDT)",
+          "chapter": "Supply under GST",
+          "topic": "Composite and Mixed Supply",
+          "difficulty": "Medium",
+          "question_type": "Single Correct",
+          "question_statement": "Gift hamper containing unrelated items sold for one consolidated festive price, without natural bundling, should be treated as:",
+          "options": [
+            {
+              "label": "A",
+              "text": "Composite supply taxed at principal supply rate."
+            },
+            {
+              "label": "B",
+              "text": "Mixed supply taxed at highest applicable rate among items."
+            },
+            {
+              "label": "C",
+              "text": "Non-taxable transaction due to bundled pricing."
+            },
+            {
+              "label": "D",
+              "text": "Supply of goods only taxed at average rate."
+            }
+          ],
+          "correct_answers": [
+            "B"
+          ],
+          "correct_explanation": "Unrelated items supplied together for a single price without natural bundling are mixed supply and tax follows highest-rate item.",
+          "distractor_explanations": {
+            "A": "Composite supply needs natural bundling and principal supply identification.",
+            "C": "Bundled pricing does not convert taxable supply into non-taxable transaction.",
+            "D": "GST does not prescribe averaging rates for mixed supply classification."
+          },
+          "source_reference": {
+            "document_title": "ICAI Study Material - Final Paper 5 (IDT)",
+            "source_url": "https://www.icai.org/post/sm-final-paper5",
+            "page_number": 44,
+            "section_or_topic": "Composite and Mixed Supply",
+            "excerpt": "Mixed supply ... does not constitute composite supply ... highest rate of tax."
+          },
+          "status": "Approved"
+        }
+      ],
+      "deterministic_validation": {
+        "checks": {
+          "exactly_4_options": "PASS",
+          "answer_key_validity_A_to_D": "PASS",
+          "single_vs_multiple_answer_count_match": "PASS",
+          "distractor_explanations_coverage": "PASS",
+          "tfidf_duplicate_detection_threshold": 0.75
+        },
+        "results_by_mcq_id": {
+          "mcq_idt_sc_001": {
+            "is_valid": true,
+            "errors": [],
+            "warnings": [],
+            "duplicate_flags": []
+          },
+          "mcq_idt_sc_002": {
+            "is_valid": true,
+            "errors": [],
+            "warnings": [],
+            "duplicate_flags": []
+          }
+        }
+      },
+      "llm_judge_quality_scores": {
+        "mcq_idt_sc_001": {
+          "relevance": 5,
+          "factual_grounding": 5,
+          "clarity": 4,
+          "difficulty_alignment": 4,
+          "distractor_quality": 4,
+          "explanation_consistency": 5,
+          "overall_score": 4.5,
+          "critique": "Strong grounding to supplied excerpts. Improve option C wording to reduce trivial elimination cues."
+        },
+        "mcq_idt_sc_002": {
+          "relevance": 5,
+          "factual_grounding": 5,
+          "clarity": 5,
+          "difficulty_alignment": 4,
+          "distractor_quality": 4,
+          "explanation_consistency": 4,
+          "overall_score": 4.5,
+          "critique": "Well-grounded and crisp. Add one distractor closer to practical edge cases to increase challenge."
+        }
+      }
+    },
+    {
+      "run_id": "dt-multiple-hard-001",
+      "input_parameters": {
+        "subject": "Direct Tax Laws (DT)",
+        "chapter": "Capital Gains",
+        "topic": "Transfer and Cost of Acquisition",
+        "difficulty": "Hard",
+        "question_type": "Multiple Correct",
+        "num_questions": 1,
+        "mock_mode": false,
+        "top_k_retrieval": 4
+      },
+      "retrieved_context": [
+        {
+          "chunk_id": "dt_cg_014",
+          "document_title": "ICAI Study Material - Final Paper 4 (DT)",
+          "source_url": "https://www.icai.org/post/sm-final-paper4",
+          "page_number": 118,
+          "chapter": "Capital Gains",
+          "section_or_topic": "Meaning of Transfer",
+          "text_excerpt": "Transfer in relation to a capital asset includes sale, exchange, relinquishment, extinguishment of rights, compulsory acquisition and certain transactions enabling enjoyment of immovable property."
+        },
+        {
+          "chunk_id": "dt_cg_017",
+          "document_title": "ICAI Study Material - Final Paper 4 (DT)",
+          "source_url": "https://www.icai.org/post/sm-final-paper4",
+          "page_number": 121,
+          "chapter": "Capital Gains",
+          "section_or_topic": "Cost of Acquisition",
+          "text_excerpt": "Cost of acquisition generally means purchase price and specified incidental costs. In specific deeming scenarios, statute provides substituted cost values."
+        }
+      ],
+      "generated_mcqs": [
+        {
+          "id": "mcq_dt_mc_001",
+          "subject": "Direct Tax Laws (DT)",
+          "chapter": "Capital Gains",
+          "topic": "Transfer and Cost of Acquisition",
+          "difficulty": "Hard",
+          "question_type": "Multiple Correct",
+          "question_statement": "Select all statements that are consistent with the supplied DT context on capital gains computation principles:",
+          "options": [
+            {
+              "label": "A",
+              "text": "Transfer includes extinguishment of rights in a capital asset."
+            },
+            {
+              "label": "B",
+              "text": "Only sale transactions can trigger transfer for capital gains purposes."
+            },
+            {
+              "label": "C",
+              "text": "Statute can prescribe substituted cost in deeming scenarios."
+            },
+            {
+              "label": "D",
+              "text": "Cost of acquisition always excludes incidental costs."
+            }
+          ],
+          "correct_answers": [
+            "A",
+            "C"
+          ],
+          "correct_explanation": "Context includes extinguishment within transfer scope and recognizes substituted cost rules in specified deeming cases. Other statements conflict with supplied text.",
+          "distractor_explanations": {
+            "B": "Transfer scope is broader than sale and includes multiple statutory events.",
+            "D": "Context indicates incidental costs can form part of acquisition cost under general rule."
+          },
+          "source_reference": {
+            "document_title": "ICAI Study Material - Final Paper 4 (DT)",
+            "source_url": "https://www.icai.org/post/sm-final-paper4",
+            "page_number": 118,
+            "section_or_topic": "Transfer and Cost of Acquisition",
+            "excerpt": "Transfer includes extinguishment ... cost includes purchase price and incidental costs ... substituted cost in specific deeming scenarios."
+          },
+          "status": "Needs Revision"
+        }
+      ],
+      "deterministic_validation": {
+        "checks": {
+          "exactly_4_options": "PASS",
+          "answer_key_validity_A_to_D": "PASS",
+          "single_vs_multiple_answer_count_match": "PASS",
+          "distractor_explanations_coverage": "PASS",
+          "tfidf_duplicate_detection_threshold": 0.75
+        },
+        "results_by_mcq_id": {
+          "mcq_dt_mc_001": {
+            "is_valid": true,
+            "errors": [],
+            "warnings": [
+              "Correct explanation is brief; consider improving rationale depth."
+            ],
+            "duplicate_flags": []
+          }
+        }
+      },
+      "llm_judge_quality_scores": {
+        "mcq_dt_mc_001": {
+          "relevance": 5,
+          "factual_grounding": 4,
+          "clarity": 4,
+          "difficulty_alignment": 4,
+          "distractor_quality": 3,
+          "explanation_consistency": 4,
+          "overall_score": 4.0,
+          "critique": "Grounding is mostly correct, but distractor B is comparatively easy to eliminate. Increase plausibility of one incorrect statement for hard mode."
+        }
+      }
+    }
+  ]
+}
+
