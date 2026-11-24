@@ -270,12 +270,11 @@ with tab_generate:
         total = len(drafts)
         passing = sum(
             1 for draft in drafts
-            if (results.get(str(draft.get("id", ""))).is_valid
-                if results.get(str(draft.get("id", ""))) else False)
+            if bool(getattr(results.get(str(draft.get("id", ""))), "is_valid", False))
         )
         pass_rate = round(passing / total * 100, 1) if total else 0.0
         uniqueness = next(
-            (r.batch_uniqueness_score for r in results.values()),
+            (getattr(r, "batch_uniqueness_score", 100.0) for r in results.values()),
             100.0,
         )
         approved = sum(1 for draft in drafts if draft.get("status", "Draft") == "Approved")
@@ -302,12 +301,15 @@ with tab_generate:
                 st.markdown("**Deterministic Validation Checklist**")
                 result = results.get(draft_id)
                 if result:
-                    for rule, passed in result.check_results.items():
+                    check_results = getattr(result, "check_results", {})
+                    duplicate_flags = getattr(result, "duplicate_flags", [])
+                    errors = getattr(result, "errors", [])
+                    for rule, passed in check_results.items():
                         st.write(f"{'✅' if passed else '⚠️'} {rule}")
-                    for duplicate in result.duplicate_flags:
+                    for duplicate in duplicate_flags:
                         st.warning(duplicate)
-                    if result.errors:
-                        st.error("\n".join(f"• {error}" for error in result.errors))
+                    if errors:
+                        st.error("\n".join(f"• {error}" for error in errors))
                 else:
                     st.warning("Validation details unavailable.")
 
@@ -381,9 +383,9 @@ with tab_quality:
 
     refresh_validation()
     validation = st.session_state.get("validation_results", {})
-    uniqueness = next((r.batch_uniqueness_score for r in validation.values()), 100.0)
+    uniqueness = next((getattr(r, "batch_uniqueness_score", 100.0) for r in validation.values()), 100.0)
     st.metric("Deterministic Uniqueness & Diversity", f"{uniqueness:.2f}%")
-    st.caption("Computed from average pairwise TF-IDF cosine complement: 100% means no measured stem overlap in the batch.")
+    st.caption("Computed as (1 − maximum pairwise TF-IDF cosine similarity) × 100; 100% means no measured stem overlap in the batch.")
 
     if st.button("Run Quality Evaluation", type="primary"):
         drafts = st.session_state.get("mcq_drafts", [])

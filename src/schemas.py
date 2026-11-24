@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from typing import Annotated, Any, Literal
 
@@ -106,7 +106,12 @@ class ValidationResult(StrictBaseModel):
     duplicate_flags: list[str] = Field(default_factory=list)
     check_results: dict[str, bool] = Field(default_factory=dict)
     duplicate_pairs: list[dict[str, Any]] = Field(default_factory=list)
-    batch_uniqueness_score: float = Field(default=100.0, ge=0.0, le=100.0)
+    batch_uniqueness_score: float = Field(
+        default=100.0,
+        ge=0.0,
+        le=100.0,
+        description="Batch uniqueness percentage derived from maximum pairwise TF-IDF cosine similarity",
+    )
 
 
 class QualityScore(StrictBaseModel):
@@ -118,3 +123,4 @@ class QualityScore(StrictBaseModel):
     explanation_consistency: Score
     overall_score: Annotated[float, Field(ge=1.0, le=5.0)]
     critique: Annotated[str, Field(min_length=1)]
+

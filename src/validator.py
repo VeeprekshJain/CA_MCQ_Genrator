@@ -121,15 +121,17 @@ def detect_duplicates(items: list[MCQItem], threshold: float = 0.75) -> dict[str
 
 
 def batch_uniqueness(items: list[MCQItem]) -> float:
-    pairs = detect_duplicate_pairs(items)
     if len(items) < 2:
         return 100.0
-    # Average complement of stem similarity across every pair.
     try:
         statements = [item.question_statement for item in items]
         matrix = cosine_similarity(TfidfVectorizer(stop_words="english").fit_transform(statements))
-        scores = [float(matrix[i, j]) for i in range(len(items)) for j in range(i + 1, len(items))]
-        return round(max(0.0, (1.0 - sum(scores) / len(scores)) * 100), 2)
+        max_similarity = max(
+            float(matrix[i, j])
+            for i in range(len(items))
+            for j in range(i + 1, len(items))
+        )
+        return round(max(0.0, (1.0 - max_similarity) * 100), 1)
     except ValueError:
         return 100.0
 
